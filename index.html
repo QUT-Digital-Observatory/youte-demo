@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="youte-demo_files/libs/clipboard/clipboard.min.js"></script>
-<script src="youte-demo_files/libs/quarto-html/tabby.min.js"></script>
-<script src="youte-demo_files/libs/quarto-html/popper.min.js"></script>
-<script src="youte-demo_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="youte-demo_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="youte-demo_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="youte-demo_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/tabby.min.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.1.251">
 
-  <meta name="author" content="Boyd Nguyen">
+  <meta name="author" content="QUT Digital Obversatory">
   <title>Collecting YouTube metadata and comments with youte CLI: Demo</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="youte-demo_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="youte-demo_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -29,11 +29,12 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="youte-demo_files/libs/revealjs/dist/theme/quarto.css" id="theme">
-  <link href="youte-demo_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="youte-demo_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="youte-demo_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="youte-demo_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="style.css">
+  <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -325,20 +326,23 @@
 
 <section id="title-slide" class="center">
   <h1 class="title">Collecting YouTube metadata and comments with youte CLI: Demo</h1>
-  <p class="author">Boyd Nguyen</p>
+  <p class="author">QUT Digital Obversatory</p>
 </section>
 
 <section id="about-youte" class="slide level2">
 <h2>About youte</h2>
-<p>youte is an open-source command-line tool that collects and tidies YouTube metadata and comments from YouTube Data API v.3.</p>
-<p>youte can collect the following data:</p>
 <ul>
-<li>search results<br>
-</li>
+<li>open-source command-line tool</li>
+<li>collects and tidies YouTube metadata and comments from YouTube Data API v.3</li>
+</ul>
+<p><code>youte</code> can collect the following data:</p>
+<ul>
+<li>search results</li>
 <li>video metadata</li>
 <li>channel metadata</li>
 <li>comment threads and replies</li>
 </ul>
+<p><code>youte</code> only retrieves publicly available data, i.e.&nbsp;data that don’t require user authentication.</p>
 </section>
 <section>
 <section id="search" class="title-slide slide level1 center">
@@ -347,8 +351,10 @@
 </section>
 <section class="slide level2">
 
-<p><strong>Do a search for videos matching “elon musk” and save results in elon_musk.json:</strong></p>
+<p><strong>Make a search for videos matching “<em>elon musk</em>” and save results in <em>elon_musk.json</em>:</strong></p>
+<pre class="shell"><code>youte search &lt;search term&gt; --outfile &lt;name-of-output-file&gt;</code></pre>
 <pre class="shell"><code>youte search "elon musk" --outfile elon_musk.json</code></pre>
+<p>Results:</p>
 
 <img data-src="search_json.png" class="r-stretch quarto-figure-center"></section>
 <section class="slide level2">
@@ -364,12 +370,14 @@
 </section>
 <section class="slide level2">
 
+<p>Results:</p>
 
 <img data-src="search_json_pretty.png" class="r-stretch quarto-figure-center"></section>
 <section class="slide level2">
 
 <p><strong>Tidy data to csv</strong></p>
 <pre class="shell"><code>youte search "elon musk" --tidy-to elon_musk.csv</code></pre>
+<p>Results:</p>
 
 <img data-src="search_csv.png" class="r-stretch quarto-figure-center"></section></section>
 <section>
@@ -379,8 +387,9 @@
 </section>
 <section class="slide level2">
 
-<p><strong>Get videos related to this video</strong> https://www.youtube.com/watch?v=<strong>cdZZpaB2kDM</strong>.</p>
-<pre class="shell"><code>youte related-to cdZZpaB2kDM -o related.json</code></pre>
+<p><strong>Get videos related to this video https://www.youtube.com/watch?v=<em>cdZZpaB2kDM</em></strong>.</p>
+<pre class="shell"><code>youte related-to &lt;video-id&gt; --outfile &lt;name-of-output-file&gt;</code></pre>
+<pre class="shell"><code>youte related-to cdZZpaB2kDM --outfile related.json</code></pre>
 </section></section>
 <section>
 <section id="get-full-video-metadata" class="title-slide slide level1 center">
@@ -389,8 +398,10 @@
 </section>
 <section class="slide level2">
 
-<p><strong>Get all public metadata associated with this video</strong> https://www.youtube.com/watch?v=<strong>cdZZpaB2kDM</strong>.</p>
-<pre class="shell"><code>youte videos cdZZpaB2kDM -o videos.json --tidy-to videos.csv</code></pre>
+<p><strong>Get all public metadata associated with this video https://www.youtube.com/watch?v=<em>cdZZpaB2kDM</em></strong>.</p>
+<pre class="shell"><code>youte videos &lt;video-id&gt; --outfile &lt;output-file&gt;</code></pre>
+<pre class="shell"><code>youte videos cdZZpaB2kDM --outfile videos.json --tidy-to videos.csv</code></pre>
+<p>Results:</p>
 
 <img data-src="video_csv.png" class="r-stretch quarto-figure-center"></section></section>
 <section>
@@ -400,10 +411,20 @@
 </section>
 <section class="slide level2">
 
-<p><strong>Get comment threads (top-level comments) under this video</strong> https://www.youtube.com/watch?v=<strong>cdZZpaB2kDM</strong></p>
+<p><strong>Get comment threads (top-level comments) under this video https://www.youtube.com/watch?v=<em>cdZZpaB2kDM</em></strong></p>
+<pre class="shell"><code>youte comments &lt;video-id&gt; --by-video --outfile &lt;output-file&gt;</code></pre>
 <pre class="shell"><code>youte comments cdZZpaB2kDM --by-video -o comments.json --tidy-to comments.csv</code></pre>
 
-<img data-src="comments.png" class="r-stretch quarto-figure-center"><div class="footer footer-default">
+<img data-src="comments.png" class="r-stretch quarto-figure-center"></section>
+<section id="for-more-information" class="slide level2">
+<h2>For more information</h2>
+<p>There are more things you can do with <code>youte</code>.</p>
+<ul>
+<li><p>Documentation, FAQs, and tutorials: <em>https://youte.readthedocs.io</em></p></li>
+<li><p>Github repo: <em>https://github.com/QUT-Digital-Observatory/youte</em></p></li>
+</ul>
+
+<img src="ado-logo-logotype-dark-cropped.png" class="slide-logo r-stretch"><div class="footer footer-default">
 
 </div>
 </section></section>
@@ -411,19 +432,19 @@
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="youte-demo_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="index_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="youte-demo_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="youte-demo_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="youte-demo_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="youte-demo_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="youte-demo_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="youte-demo_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="youte-demo_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="youte-demo_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="youte-demo_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="index_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="index_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="index_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
